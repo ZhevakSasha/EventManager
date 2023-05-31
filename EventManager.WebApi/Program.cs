@@ -1,6 +1,8 @@
 using System.Text;
+using AutoMapper;
 using EventManager.WebApi;
 using EventManager.WebApi.Entities;
+using EventManager.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,9 @@ var connectionString = builder.Configuration
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IEventService, EventService>();
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
     {

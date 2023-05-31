@@ -1,4 +1,6 @@
-﻿namespace EventManager.WebApi.Entities;
+﻿using EventManager.WebApi.DtoModels;
+
+namespace EventManager.WebApi.Entities;
 
 public class Event
 {
@@ -13,4 +15,11 @@ public class Event
     public bool Active { get; set; }
     
     public DateTime StartAt { get; set; }
+    
+    public void Update(EventDto eventDto)
+    {
+        Name = eventDto.Name;
+        Description = eventDto.Description;
+        StartAt = eventDto.StartAt;
+    }
 }
